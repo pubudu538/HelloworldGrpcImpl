@@ -1,0 +1,1 @@
+protoc --plugin=protoc-gen-grpc-java=/path/to/protoc-gen-grpc-java --grpc-java_out=$PWD/../java --java_out=$PWD/../java helloworld.proto 
