@@ -15,9 +15,7 @@ public class GrpcService {
     private Server server;
     int port = 50051;
 
-    public void start() throws IOException {
-        /* The port on which the server should run */
-        int port = 50051;
+    public void start(int port) throws IOException {
         if (server == null || server.isShutdown() || server.isTerminated()) {
             server = ServerBuilder.forPort(port)
                     .addService(new GrpcHelloServiceImpl())
@@ -27,7 +25,15 @@ public class GrpcService {
     }
 
     public static void main(String[] args) throws IOException {
-        new GrpcService().start();
+        int port ;
+        if (args.length == 1)  {
+            String portVal = args[0];
+            port = Integer.parseInt(portVal);
+        } else {
+            System.out.println("If you need to change the default port, provide that as a commandline argument");
+            port = 50051;
+        }
+        new GrpcService().start(port);
 
         while(true) {
 

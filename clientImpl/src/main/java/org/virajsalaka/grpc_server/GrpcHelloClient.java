@@ -37,9 +37,22 @@ public class GrpcHelloClient {
     }
 
     public static void main(String[] args) throws InterruptedException {
+        if(args.length == 0 || args.length > 3) {
+            System.out.println("Please provide the required arguments");
+            System.out.println("java -jar <jar-path> <text> <api_key_token> <port>");
+            System.exit(0);
+        }
         String input = args[0];
         String apiKeyToken = args[1];
-        String targetUrl = "localhost:9090";
+
+        String targetUrl = "localhost:";
+        if (args.length == 3) {
+            targetUrl = targetUrl + args[2];
+        } else {
+            targetUrl = targetUrl + "9090";
+        }
+        System.out.println("Connecting to : " + targetUrl);
+
         ManagedChannel channel = ManagedChannelBuilder.forTarget(targetUrl).usePlaintext().build();
         try {
             GrpcHelloClient client = new GrpcHelloClient(channel, apiKeyToken);
