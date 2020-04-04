@@ -1,7 +1,6 @@
 syntax = "proto3";
 package org.virajsalaka.grpc;
 
-
 service HelloWorld {
     rpc hello (HelloRequest) returns (HelloReply);
 }

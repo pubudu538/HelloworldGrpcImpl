@@ -36,6 +36,7 @@ public class GrpcHelloClient {
         return response.getOutput();
     }
 
+    //todo: add target host
     public static void main(String[] args) throws InterruptedException {
         if(args.length == 0 || args.length > 3) {
             System.out.println("Please provide the required arguments");
@@ -43,6 +44,7 @@ public class GrpcHelloClient {
             System.exit(0);
         }
         String input = args[0];
+
         String apiKeyToken = args[1];
 
         String targetUrl = "localhost:";
